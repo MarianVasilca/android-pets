@@ -3,7 +3,8 @@ package tech.ascendio.mvvmstarter.data.db
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.util.*
+import java.util.Calendar
+import java.util.Collections
 
 /**
  * Type converters to allow Room to reference complex data types.

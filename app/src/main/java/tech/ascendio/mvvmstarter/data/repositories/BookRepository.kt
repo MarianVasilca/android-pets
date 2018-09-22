@@ -1,6 +1,5 @@
 package tech.ascendio.mvvmstarter.data.repositories
 
-import android.util.Log
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.subscribeBy
@@ -10,6 +9,7 @@ import tech.ascendio.mvvmstarter.data.vo.Book
 import tech.ascendio.mvvmstarter.utilities.schedulers.IoScheduler
 import tech.ascendio.mvvmstarter.utilities.schedulers.MainScheduler
 import tech.ascendio.mvvmstarter.utilities.schedulers.NetworkScheduler
+import timber.log.Timber
 
 /*
  * Copyright (C) 2018 Marian Vasilca@Ascendio TechVision
@@ -45,7 +45,7 @@ class BookRepository constructor(
         createSaveBooksTask().subscribeBy(onSuccess = {
             // Success
         }, onError = { throwable ->
-            Log.i(TAG, "Fetching failed", throwable)
+            Timber.i(throwable, "Fetching failed")
         })
     }
 
@@ -63,9 +63,5 @@ class BookRepository constructor(
                 }, onError = {
                     emitter.onError(it)
                 })
-    }
-
-    companion object {
-        const val TAG = "BookRepository"
     }
 }

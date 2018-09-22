@@ -3,7 +3,6 @@ package tech.ascendio.mvvmstarter.ui.fragments
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,32 +15,29 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import tech.ascendio.mvvmstarter.ui.activities.MainActivity
 import tech.ascendio.mvvmstarter.utilities.AutoClearedValue
+import timber.log.Timber
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     @get:LayoutRes
     internal abstract val layoutResource: Int
 
-    // tag is not a companion object because it should be used only from a BaseFragment reference
-    internal abstract val tag: String
-
-    lateinit var viewDataBinding: T
+    private lateinit var viewDataBinding: T
     @VisibleForTesting
     var binding: AutoClearedValue<T>? = null
 
-
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        Log.i(tag, "onAttach")
+        Timber.i("onAttach")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(tag, "onCreate")
+        Timber.i("onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.i(tag, "onCreateView")
+        Timber.i("onCreateView")
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutResource, container, false)
         binding = AutoClearedValue(this)
         cancelFragmentClickEvents(viewDataBinding.root)
@@ -65,23 +61,23 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i(tag, "onViewCreated")
+        Timber.i("onViewCreated")
         onBoundViews(savedInstanceState)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.i(tag, "onDestroyView")
+        Timber.i("onDestroyView")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(tag, "onDestroy")
+        Timber.i("onDestroy")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.i(tag, "onDetach")
+        Timber.i("onDetach")
     }
 
     protected fun onBackPressed() {

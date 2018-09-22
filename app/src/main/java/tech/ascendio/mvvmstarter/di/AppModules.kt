@@ -30,7 +30,6 @@ import tech.ascendio.mvvmstarter.viewmodels.BookViewModel
 val appModules = applicationContext {
 
     bean { it as Application }
-//    bean { (it as Application).applicationContext }
 
     bean { AppDatabase.getInstance(get()) }
     bean { ApiService.create() }
@@ -42,5 +41,4 @@ val appModules = applicationContext {
     bean { NetworkScheduler() }
 
     viewModel { BookViewModel(get()) }
-
 }

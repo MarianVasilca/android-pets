@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
-import tech.ascendio.mvvm.ui.adapters.util.DataBoundListAdapter
 import tech.ascendio.mvvmstarter.R
 import tech.ascendio.mvvmstarter.data.vo.Book
 import tech.ascendio.mvvmstarter.databinding.BookItemBinding
@@ -46,7 +45,7 @@ class BookAdapter(
                         parent,
                         false
                 )
-        binding.root.setOnClickListener {
+        binding.root.setOnClickListener { _ ->
             binding.book?.let {
                 callback?.invoke(it)
             }
@@ -57,5 +56,4 @@ class BookAdapter(
     override fun bind(binding: BookItemBinding, item: Book, position: Int) {
         binding.book = item
     }
-
 }

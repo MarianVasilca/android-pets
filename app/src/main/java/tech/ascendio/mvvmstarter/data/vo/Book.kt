@@ -26,5 +26,5 @@ data class Book(
         val numberOfPages: Int,
         val authors: List<String>
 ) {
-    fun firstAuthor() = if (authors.isNotEmpty()) authors[0] else "No author"
+    fun firstAuthor() = authors[0]
 }

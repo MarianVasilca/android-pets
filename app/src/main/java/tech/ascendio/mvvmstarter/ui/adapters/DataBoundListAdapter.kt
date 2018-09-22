@@ -1,10 +1,11 @@
-package tech.ascendio.mvvm.ui.adapters.util
+package tech.ascendio.mvvmstarter.ui.adapters
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import tech.ascendio.mvvm.ui.adapters.util.DataBoundViewHolder
 import tech.ascendio.mvvmstarter.utilities.IO_EXECUTOR
 
 /**

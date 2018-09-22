@@ -34,8 +34,6 @@ import tech.ascendio.mvvmstarter.viewmodels.BookViewModel
 class MainFragment : BaseFragment<FragmentMainBinding>() {
     override val layoutResource: Int
         get() = R.layout.fragment_main
-    override val tag: String
-        get() = "MainFragment"
 
     private val compositeDisposable = CompositeDisposable()
     private val viewModel: BookViewModel by inject()
