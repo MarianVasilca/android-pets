@@ -5,10 +5,11 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.subscribeBy
 import tech.ascendio.mvvmstarter.data.api.ApiService
-import tech.ascendio.mvvmstarter.data.db.dao.BookDao
+import tech.ascendio.mvvmstarter.data.db.AppDatabase
 import tech.ascendio.mvvmstarter.data.vo.Book
+import tech.ascendio.mvvmstarter.utilities.schedulers.IoScheduler
 import tech.ascendio.mvvmstarter.utilities.schedulers.MainScheduler
-import tech.ascendio.mvvmstarter.utilities.schedulers.Scheduler
+import tech.ascendio.mvvmstarter.utilities.schedulers.NetworkScheduler
 
 /*
  * Copyright (C) 2018 Marian Vasilca@Ascendio TechVision
@@ -28,13 +29,13 @@ import tech.ascendio.mvvmstarter.utilities.schedulers.Scheduler
 
 class BookRepository constructor(
         private val apiService: ApiService,
-        private val bookDao: BookDao,
+        private val database: AppDatabase,
         private val mainScheduler: MainScheduler,
-        private val networkScheduler: Scheduler,
-        private val ioScheduler: Scheduler
+        private val networkScheduler: NetworkScheduler,
+        private val ioScheduler: IoScheduler
 ) {
     fun startListeningForBooks(): Flowable<List<Book>> =
-            bookDao.listenForBooks()
+            database.bookDao().listenForBooks()
                     .distinctUntilChanged()
                     .observeOn(mainScheduler.asRxScheduler())
                     .replay(1)
@@ -57,7 +58,7 @@ class BookRepository constructor(
                         emitter.onSuccess(Unit)
                         return@subscribeBy
                     }
-                    bookDao.insert(it)
+                    database.bookDao().insert(it)
                     emitter.onSuccess(Unit)
                 }, onError = {
                     emitter.onError(it)
@@ -66,16 +67,5 @@ class BookRepository constructor(
 
     companion object {
         const val TAG = "BookRepository"
-
-        // For Singleton instantiation
-        @Volatile
-        private var instance: BookRepository? = null
-
-        fun getInstance(apiService: ApiService, bookDao: BookDao, mainScheduler: MainScheduler,
-                        ioScheduler: Scheduler, networkScheduler: Scheduler) =
-                instance ?: synchronized(this) {
-                    instance ?: BookRepository(apiService, bookDao, mainScheduler, networkScheduler,
-                            ioScheduler).also { instance = it }
-                }
     }
 }

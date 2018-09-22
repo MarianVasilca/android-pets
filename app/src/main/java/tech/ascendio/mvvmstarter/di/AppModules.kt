@@ -1,13 +1,15 @@
 package tech.ascendio.mvvmstarter.di
 
-import android.content.Context
+import android.app.Application
+import org.koin.android.architecture.ext.viewModel
+import org.koin.dsl.module.applicationContext
 import tech.ascendio.mvvmstarter.data.api.ApiService
 import tech.ascendio.mvvmstarter.data.db.AppDatabase
 import tech.ascendio.mvvmstarter.data.repositories.BookRepository
 import tech.ascendio.mvvmstarter.utilities.schedulers.IoScheduler
 import tech.ascendio.mvvmstarter.utilities.schedulers.MainScheduler
 import tech.ascendio.mvvmstarter.utilities.schedulers.NetworkScheduler
-import tech.ascendio.mvvmstarter.viewmodels.BookViewModelFactory
+import tech.ascendio.mvvmstarter.viewmodels.BookViewModel
 
 /*
  * Copyright (C) 2018 Marian Vasilca@Ascendio TechVision
@@ -25,22 +27,20 @@ import tech.ascendio.mvvmstarter.viewmodels.BookViewModelFactory
  * limitations under the License.
  */
 
-/**
- * Static methods used to inject classes needed for various Activities and Fragments.
- */
-object InjectorUtils {
-    private fun getBookRepository(context: Context): BookRepository {
-        return BookRepository.getInstance(
-                ApiService.create(),
-                AppDatabase.getInstance(context).bookDao(),
-                MainScheduler(),
-                IoScheduler(),
-                NetworkScheduler()
-        )
-    }
+val appModules = applicationContext {
 
-    fun provideBookViewModelFactory(context: Context): BookViewModelFactory {
-        val repository = getBookRepository(context)
-        return BookViewModelFactory(repository)
-    }
+    bean { it as Application }
+//    bean { (it as Application).applicationContext }
+
+    bean { AppDatabase.getInstance(get()) }
+    bean { ApiService.create() }
+
+    bean { BookRepository(get(), get(), get(), get(), get()) }
+
+    bean { IoScheduler() }
+    bean { MainScheduler() }
+    bean { NetworkScheduler() }
+
+    viewModel { BookViewModel(get()) }
+
 }

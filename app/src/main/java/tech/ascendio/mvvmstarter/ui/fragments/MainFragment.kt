@@ -1,14 +1,13 @@
 package tech.ascendio.mvvmstarter.ui.fragments
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import kotlinx.android.synthetic.main.fragment_main.*
+import org.koin.android.ext.android.inject
 import tech.ascendio.mvvmstarter.R
 import tech.ascendio.mvvmstarter.databinding.FragmentMainBinding
-import tech.ascendio.mvvmstarter.di.InjectorUtils
 import tech.ascendio.mvvmstarter.ui.adapters.BookAdapter
 import tech.ascendio.mvvmstarter.utilities.autoCleared
 import tech.ascendio.mvvmstarter.viewmodels.BookViewModel
@@ -39,13 +38,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         get() = "MainFragment"
 
     private val compositeDisposable = CompositeDisposable()
-    private lateinit var viewModel: BookViewModel
+    private val viewModel: BookViewModel by inject()
     private var adapter by autoCleared<BookAdapter>()
 
     override fun onBoundViews(savedInstanceState: Bundle?) {
         setAdapter()
-        val factory = InjectorUtils.provideBookViewModelFactory(requireContext().applicationContext)
-        viewModel = ViewModelProviders.of(this, factory).get(BookViewModel::class.java)
         subscribeUI()
         fetch()
     }

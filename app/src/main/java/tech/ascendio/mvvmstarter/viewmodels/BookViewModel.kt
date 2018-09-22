@@ -24,7 +24,7 @@ import tech.ascendio.mvvmstarter.data.vo.Book
  */
 
 class BookViewModel(
-        val bookRepository: BookRepository
+        private val bookRepository: BookRepository
 ) : ViewModel() {
     private val books: Flowable<List<Book>> = bookRepository.startListeningForBooks()
 

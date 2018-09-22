@@ -19,4 +19,4 @@ package tech.ascendio.mvvmstarter.utilities
 /**
  * Constants used throughout the app.
  */
-const val DATABASE_NAME = "app-db"
+const val DATABASE_NAME = "pets-db"
