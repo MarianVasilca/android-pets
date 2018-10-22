@@ -1,5 +1,16 @@
 <resources>
-    <string name="app_name">Pets</string>
-
     <string name="title_main">Main</string>
+    <string name="title_startup">Startup</string>
+    <string name="title_register">Register</string>
+    <string name="title_login">Login</string>
+
+    <!--General Login-->
+    <string name="create_account">Create New Account</string>
+    <string name="log_in">Log In</string>
+    <string name="email_or_username">Email or username</string>
+    <string name="helper_email_or_username">The email or username that you used to create your account</string>
+    <string name="password">Password</string>
+    <string name="helper_password">The password for the above username or password</string>
+    <string name="confirm_password">Confirm password</string>
+
 </resources>

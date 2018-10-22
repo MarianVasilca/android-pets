@@ -16,15 +16,20 @@
 
 <resources>
     <!-- Text Sizes -->
+    <dimen name="text_size_display_3_material">56sp</dimen>
     <dimen name="text_size_subhead_material">16sp</dimen>
 
     <!-- Padding -->
-    <dimen name="padding_bottom_views">8dp</dimen>
+    <dimen name="padding_smallest">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
 
     <!-- Margins -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_screen_edge">16dp</dimen>
     <dimen name="margin_top_views">8dp</dimen>
 
     <!--Corner-->
-    <dimen name="card_view_explore_corner">10dp</dimen>
+    <dimen name="corner_small">4dp</dimen>
 </resources>

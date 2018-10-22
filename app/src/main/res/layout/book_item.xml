@@ -14,9 +14,9 @@
         android:layout_marginStart="@dimen/margin_screen_edge"
         android:layout_marginTop="@dimen/margin_top_views"
         android:layout_marginEnd="@dimen/margin_screen_edge"
-        android:padding="@dimen/padding_bottom_views"
+        android:padding="@dimen/padding_small"
         android:shape="ring"
-        app:cardCornerRadius="@dimen/card_view_explore_corner">
+        app:cardCornerRadius="@dimen/corner_small">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

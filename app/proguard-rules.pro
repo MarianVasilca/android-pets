@@ -25,3 +25,11 @@
 -dontwarn okhttp3.**
 
 -keepattributes *Annotation*
+
+-keep class android.databinding.** { *; }
+-keep class android.arch.** { *; }
+-keep class androidx.arch.** { *; }
+-keep class androidx.lifecycle.** { *; }
+-keep class com.google.** { *; }
+-keep class androidx.** { *; }
+-keep class android.view.** { *; }

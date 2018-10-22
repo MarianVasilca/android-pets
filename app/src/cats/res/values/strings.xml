@@ -1,5 +1,3 @@
 <resources>
-    <string name="app_name">Cats</string>
-
-    <string name="title_main">Main</string>
+    <string name="app_name">Meowgram</string>
 </resources>

@@ -50,6 +50,10 @@ android {
             outputFileName = "pets-${variant.name}-v${variant.versionName}.apk"
         }
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {

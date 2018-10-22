@@ -1,10 +1,9 @@
 package tech.ascendio.mvvmstarter.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import tech.ascendio.mvvmstarter.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
